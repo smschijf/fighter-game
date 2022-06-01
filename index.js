@@ -35,13 +35,13 @@ class Sprite {
 
     //attack box
     if (this.isAttacking) {
-    c.fillStyle = "pink";
-    c.fillRect(
-      this.attackBox.position.x,
-      this.attackBox.position.y,
-      this.attackBox.width,
-      this.attackBox.height
-    );
+      c.fillStyle = "pink";
+      c.fillRect(
+        this.attackBox.position.x,
+        this.attackBox.position.y,
+        this.attackBox.width,
+        this.attackBox.height
+      );
     }
   }
 
@@ -115,16 +115,47 @@ const keys = {
   },
 };
 
-function rectangularCollision({ rectangle1, rectangle2}) {
+function rectangularCollision({ rectangle1, rectangle2 }) {
   return (
     rectangle1.attackBox.position.x + rectangle1.attackBox.width >=
       rectangle2.position.x &&
-    rectangle1.attackBox.position.x <= rectangle2.position.x + rectangle2.width &&
+    rectangle1.attackBox.position.x <=
+      rectangle2.position.x + rectangle2.width &&
     rectangle1.attackBox.position.y + rectangle1.attackBox.height >=
       rectangle2.position.y &&
     rectangle1.attackBox.position.y <= rectangle2.position.y + rectangle2.height
   );
 }
+
+function determineWinner({ player, player2, timerId}) {
+  clearTimeout(timerId);
+  document.querySelector("#displayText").style.display = "flex";
+  if (player.health === player2.health) {
+    document.querySelector("#displayText").innerHTML = "Tie";
+  }
+  else if (player.health > player2.health) {
+    document.querySelector("#displayText").innerHTML = "Player 1 Wins";
+  }
+  else if (player.health < player2.health) {
+    document.querySelector("#displayText").innerHTML = "Player 2 Wins";
+  }
+}
+
+let timer = 60;
+let timerId;
+function decreaseTimer() {
+  if (timer > 0) {
+    timerId = setTimeout(decreaseTimer, 1000);
+    timer--;
+    document.querySelector("#timer").innerHTML = timer;
+  }
+
+  if (timer === 0) {
+    determineWinner({ player, player2, timerId});
+  }
+}
+
+decreaseTimer();
 
 function animate() {
   window.requestAnimationFrame(animate);
@@ -160,7 +191,7 @@ function animate() {
   ) {
     player.isAttacking = false;
     player2.health -= 20;
-    document.querySelector('#player2Health').style.width = player2.health + '%';
+    document.querySelector("#player2Health").style.width = player2.health + "%";
   }
 
   if (
@@ -172,7 +203,12 @@ function animate() {
   ) {
     player2.isAttacking = false;
     player.health -= 20;
-    document.querySelector('#playerHealth').style.width = player.health + '%';
+    document.querySelector("#playerHealth").style.width = player.health + "%";
+  }
+
+  //end game based on health
+  if (player2.health <= 0 || player.health <= 0) {
+    determineWinner({ player, player2, timerId});
   }
 }
 
