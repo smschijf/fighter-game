@@ -39,6 +39,13 @@ const player = new Fighter({
     x: 0,
     y: 0,
   },
+  imageSrc: './img/samuraiMack/idle.png',
+  framesMax: 8,
+  scale: 2.5,
+  offset: {
+    x: 215,
+    y: 157,
+  }
 });
 
 const player2 = new Fighter({
@@ -81,7 +88,7 @@ function animate() {
   background.update();
   shop.update();
   player.update();
-  player2.update();
+  // player2.update();
 
   player.velocity.x = 0;
   player2.velocity.x = 0;
