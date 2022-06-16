@@ -68,6 +68,14 @@ const player = new Fighter({
       framesMax: 6,
     },
   },
+  attackBox: {
+    offset: {
+      x: 100,
+      y: 50,
+    },
+    width: 160,
+    height: 50,
+  },
 });
 
 const player2 = new Fighter({
@@ -112,6 +120,14 @@ const player2 = new Fighter({
       framesMax: 4,
     },
   },
+  attackBox: {
+    offset: {
+      x: -170,
+      y: 50,
+    },
+    width: 170,
+    height: 50,
+  },
 });
 
 const keys = {
@@ -146,37 +162,37 @@ function animate() {
   //player1 movement
   if (keys.a.pressed && player.lastKey === "a") {
     player.velocity.x = -5;
-    player.switchSprite('run');
+    player.switchSprite("run");
   } else if (keys.d.pressed && player.lastKey === "d") {
     player.velocity.x = 5;
-    player.switchSprite('run');
+    player.switchSprite("run");
   } else {
-    player.switchSprite('idle');
+    player.switchSprite("idle");
   }
 
   //player1 jumping
   if (player.velocity.y < 0) {
-    player.switchSprite('jump');
+    player.switchSprite("jump");
   } else if (player.velocity.y > 0) {
-    player.switchSprite('fall');
+    player.switchSprite("fall");
   }
 
   //player2 movement
   if (keys.ArrowLeft.pressed && player2.lastKey === "ArrowLeft") {
     player2.velocity.x = -5;
-    player2.switchSprite('run');
+    player2.switchSprite("run");
   } else if (keys.ArrowRight.pressed && player2.lastKey === "ArrowRight") {
     player2.velocity.x = 5;
-    player2.switchSprite('run');
+    player2.switchSprite("run");
   } else {
-    player2.switchSprite('idle');
+    player2.switchSprite("idle");
   }
 
   //player2 jumping
   if (player2.velocity.y < 0) {
-    player2.switchSprite('jump');
+    player2.switchSprite("jump");
   } else if (player2.velocity.y > 0) {
-    player2.switchSprite('fall');
+    player2.switchSprite("fall");
   }
 
   //detect for collision
@@ -185,11 +201,17 @@ function animate() {
       rectangle1: player,
       rectangle2: player2,
     }) &&
-    player.isAttacking
+    player.isAttacking &&
+    player.framesCurrent === 4
   ) {
     player.isAttacking = false;
     player2.health -= 20;
     document.querySelector("#player2Health").style.width = player2.health + "%";
+  }
+
+  //if player misses
+  if (player.isAttacking && player.framesCurrent === 4) {
+    player.isAttacking = false;
   }
 
   if (
@@ -197,11 +219,17 @@ function animate() {
       rectangle1: player2,
       rectangle2: player,
     }) &&
-    player2.isAttacking
+    player2.isAttacking &&
+    player2.framesCurrent === 2
   ) {
     player2.isAttacking = false;
-    player.health -= 20;
+    player.health -= 10;
     document.querySelector("#playerHealth").style.width = player.health + "%";
+  }
+
+  //if player misses
+  if (player2.isAttacking && player2.framesCurrent === 2) {
+    player2.isAttacking = false;
   }
 
   //end game based on health
