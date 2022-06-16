@@ -2,9 +2,13 @@ javascript:
 - highscore tonen en opslaan in database
 - minimaal 3 geluid elementen
 - player2 damage helft minder
-- save score knop met eemn nieuwe pagina
+- save score knop met een nieuwe pagina
 
 database:
 - minimaal 2 tabellen
 - tabellen hebben een relatie (JOIN)
 - error afhandeling
+
+
+FIXME:
+- infinite jump
