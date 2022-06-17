@@ -71,6 +71,10 @@ const player = new Fighter({
       imageSrc: "./img/samuraiMack/Take hit.png",
       framesMax: 4,
     },
+    death: {
+      imageSrc: "./img/samuraiMack/Death.png",
+      framesMax: 6,
+    },
   },
   attackBox: {
     offset: {
@@ -126,7 +130,11 @@ const player2 = new Fighter({
     takeHit: {
       imageSrc: "./img/kenji/Take hit.png",
       framesMax: 3,
-    }
+    },
+    death: {
+      imageSrc: "./img/kenji/Death.png",
+      framesMax: 7,
+    },
   },
   attackBox: {
     offset: {
@@ -212,6 +220,7 @@ function animate() {
     player.isAttacking &&
     player.framesCurrent === 4
   ) {
+    player2.health -= 20;
     player2.takeHit();
     player.isAttacking = false;
     document.querySelector("#player2Health").style.width = player2.health + "%";
@@ -231,9 +240,9 @@ function animate() {
     player2.isAttacking &&
     player2.framesCurrent === 2
   ) {
+    player.health -= 10;
     player.takeHit();
     player2.isAttacking = false;
-    player.health -= 10;
     document.querySelector("#playerHealth").style.width = player.health + "%";
   }
 
@@ -251,38 +260,44 @@ function animate() {
 animate();
 
 window.addEventListener("keydown", (event) => {
-  switch (event.key) {
-    //player1 keys
-    case "d":
-      keys.d.pressed = true;
-      player.lastKey = "d";
-      break;
-    case "a":
-      keys.a.pressed = true;
-      player.lastKey = "a";
-      break;
-    case "w":
-      player.velocity.y = -20;
-      break;
-    case " ":
-      player.attack();
-      break;
+  if (!player.dead) {
+    switch (event.key) {
+      //player1 keys
+      case "d":
+        keys.d.pressed = true;
+        player.lastKey = "d";
+        break;
+      case "a":
+        keys.a.pressed = true;
+        player.lastKey = "a";
+        break;
+      case "w":
+        player.velocity.y = -20;
+        break;
+      case " ":
+        player.attack();
+        break;
+    }
+  }
 
-    //player2 keys
-    case "ArrowRight":
-      keys.ArrowRight.pressed = true;
-      player2.lastKey = "ArrowRight";
-      break;
-    case "ArrowLeft":
-      keys.ArrowLeft.pressed = true;
-      player2.lastKey = "ArrowLeft";
-      break;
-    case "ArrowUp":
-      player2.velocity.y = -20;
-      break;
-    case "ArrowDown":
-      player2.attack();
-      break;
+  if (!player2.dead) {
+    switch (event.key) {
+      //player2 keys
+      case "ArrowRight":
+        keys.ArrowRight.pressed = true;
+        player2.lastKey = "ArrowRight";
+        break;
+      case "ArrowLeft":
+        keys.ArrowLeft.pressed = true;
+        player2.lastKey = "ArrowLeft";
+        break;
+      case "ArrowUp":
+        player2.velocity.y = -20;
+        break;
+      case "ArrowDown":
+        player2.attack();
+        break;
+    }
   }
 });
 
