@@ -88,7 +88,7 @@ const player = new Fighter({
 
 const player2 = new Fighter({
   position: {
-    x: 400,
+    x: 960,
     y: 100,
   },
   velocity: {
@@ -169,8 +169,8 @@ function animate() {
   c.fillRect(0, 0, canvas.width, canvas.height);
   background.update();
   shop.update();
-  c.fillStyle = 'rgba(255, 255, 255, 0.15)'
-  c.fillRect(0, 0, canvas.width, canvas.height)
+  c.fillStyle = "rgba(255, 255, 255, 0.15)";
+  c.fillRect(0, 0, canvas.width, canvas.height);
   player.update();
   player2.update();
 
@@ -222,6 +222,7 @@ function animate() {
     player.isAttacking &&
     player.framesCurrent === 4
   ) {
+    sfx.damage.play();
     player2.health -= 20;
     player2.takeHit();
     player.isAttacking = false;
@@ -242,6 +243,7 @@ function animate() {
     player2.isAttacking &&
     player2.framesCurrent === 2
   ) {
+    sfx.damage.play();
     player.health -= 10;
     player.takeHit();
     player2.isAttacking = false;
@@ -274,7 +276,7 @@ window.addEventListener("keydown", (event) => {
         player.lastKey = "a";
         break;
       case "w":
-        player.velocity.y = -20;
+        player.velocity.y = -15;
         break;
       case " ":
         player.attack();
@@ -294,7 +296,7 @@ window.addEventListener("keydown", (event) => {
         player2.lastKey = "ArrowLeft";
         break;
       case "ArrowUp":
-        player2.velocity.y = -20;
+        player2.velocity.y = -15;
         break;
       case "ArrowDown":
         player2.attack();

@@ -35,3 +35,15 @@ function decreaseTimer() {
     determineWinner({ player, player2, timerId });
   }
 }
+
+var sfx = {
+  damage: new Howl({
+    src: ["../sound/damage.wav"],
+  }),
+  victory: new Howl({
+    src: ["../sound/victory.wav"],
+  }),
+  death: new Howl({
+    src: ['../sound/death.wav'],
+  }),
+};
