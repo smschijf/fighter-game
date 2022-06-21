@@ -139,6 +139,7 @@ class Fighter extends Sprite {
       this.switchSprite("death");
       sfx.victory.play();
       sfx.death.play();
+      HIER
     } else this.switchSprite("takeHit");
   }
 
