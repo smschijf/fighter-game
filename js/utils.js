@@ -21,6 +21,7 @@ function determineWinner({ player, player2, timerId }) {
   } else if (player.health < player2.health) {
     document.querySelector("#displayText").innerHTML = "Player 2 Wins";
   }
+  
 }
 
 let timer = 60;

@@ -1,11 +1,5 @@
-javascript:
-- highscore tonen en opslaan in database
-- save score knop met een nieuwe pagina
-
 database:
-- minimaal 2 tabellen
 - tabellen hebben een relatie (JOIN)
-- error afhandeling
 
 
 FIXME:
