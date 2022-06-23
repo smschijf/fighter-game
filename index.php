@@ -1,5 +1,8 @@
 <head>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.1/howler.min.js" integrity="sha512-L6Z/YtIPQ7eU3BProP34WGU5yIRk7tNHk7vaC2dB1Vy1atz6wl9mCkTPPZ2Rn1qPr+vY2mZ9odZLdGYuaBk7dQ==" crossorigin="anonymous"></script>
+  <script defer src="js/howler.min.js"></script>
+  <script defer src="js/utils.js"></script>
+  <script defer src="js/classes.js"></script>
+  <script defer src="index.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
@@ -30,7 +33,6 @@
 </head>
 
 <body>
-  <?php include('php/insert.php') ?>
   <!-- red container div -->
   <div style="position: relative; display: inline-block">
     <!-- smaller red container div -->
@@ -118,6 +120,8 @@
         display: none;
       ">
       <form action="php/insert.php" method="post">
+        <input type="number" id="winner" name="winner" value="" style="display: none;">
+        <input type="text" id="playerName" name="playerName" value="" style="display: none;">
         <input type="submit" name="save-score" value="Save Score" style="
           border: none;
           background: linear-gradient(
@@ -142,8 +146,4 @@
 
     <canvas></canvas>
   </div>
-
-  <script src="js/utils.js"></script>
-  <script src="js/classes.js"></script>
-  <script src="index.js"></script>
 </body>

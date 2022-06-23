@@ -14,14 +14,25 @@ function determineWinner({ player, player2, timerId }) {
   clearTimeout(timerId);
   document.querySelector("#displayText").style.display = "flex";
   document.querySelector("#displayButton").style.display = "flex";
+  let winner;
+  let playerName;
   if (player.health === player2.health) {
     document.querySelector("#displayText").innerHTML = "Tie";
+    winner = 0;
+    document.querySelector("#winner").value = winner;
   } else if (player.health > player2.health) {
     document.querySelector("#displayText").innerHTML = "Player 1 Wins";
+    winner = 1;
+    playerName = "p1";
+    document.querySelector("#winner").value = winner;
+    document.querySelector("#playerName").value = playerName;
   } else if (player.health < player2.health) {
     document.querySelector("#displayText").innerHTML = "Player 2 Wins";
+    winner = 2;
+    playerName = "p2";
+    document.querySelector("#winner").value = winner;
+    document.querySelector("#playerName").value = playerName;
   }
-  
 }
 
 let timer = 60;
@@ -38,14 +49,16 @@ function decreaseTimer() {
   }
 }
 
+console.log(document.currentScript.src);
+
 var sfx = {
   damage: new Howl({
-    src: ["../sound/damage.wav"],
+    src: ["damage.wav"],
   }),
   victory: new Howl({
-    src: ["../sound/victory.wav"],
+    src: ["victory.wav"],
   }),
   death: new Howl({
-    src: ['../sound/death.wav'],
+    src: ['death.wav'],
   }),
 };
