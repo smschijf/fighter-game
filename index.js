@@ -262,6 +262,7 @@ function animate() {
 }
 
 animate();
+let isJumping = false;
 
 window.addEventListener("keydown", (event) => {
   if (!player.dead) {
@@ -276,6 +277,7 @@ window.addEventListener("keydown", (event) => {
         player.lastKey = "a";
         break;
       case "w":
+        if (player.velocity.y == 0)
         player.velocity.y = -15;
         break;
       case " ":
@@ -296,10 +298,12 @@ window.addEventListener("keydown", (event) => {
         player2.lastKey = "ArrowLeft";
         break;
       case "ArrowUp":
+        if (player2.velocity.y == 0)
         player2.velocity.y = -15;
         break;
       case "ArrowDown":
         player2.attack();
+        console.log(player.position)
         break;
     }
   }

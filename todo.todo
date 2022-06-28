@@ -1,6 +1,2 @@
 database:
 - tabellen hebben een relatie (JOIN)
-
-
-FIXME:
-- infinite jump
