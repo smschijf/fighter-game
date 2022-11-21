@@ -10,7 +10,7 @@ player 2:
 
 ### IMPORTANT NOTICE
 
-Project doesn't work in Google Chrome at the moment. To play the game you can run it locally.
+Game doesn't work properly in Google Chrome at the moment. To play the game without problems, you can run it locally.
 
 Clone the project
 
