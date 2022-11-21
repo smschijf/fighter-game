@@ -15,5 +15,5 @@ Project doesn't work in Google Chrome at the moment. To play the game you can ru
 Clone the project
 
 ```bash
-  git clone https://link-to-project
+  git clone git@github.com:smschijf/fighter-game.git
 ```
