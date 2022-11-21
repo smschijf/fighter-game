@@ -7,3 +7,13 @@ player 1:
 player 2:
   - movement -> arrow keys
   - attack -> arrow down
+
+### IMPORTANT NOTICE
+
+Project doesn't work in Google Chrome at the moment. To play the game you can run it locally.
+
+Clone the project
+
+```bash
+  git clone https://link-to-project
+```
